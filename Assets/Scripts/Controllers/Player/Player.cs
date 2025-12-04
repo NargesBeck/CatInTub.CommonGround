@@ -68,8 +68,7 @@ public class Player : MonoBehaviour
         PlayerMovementController.OnMove = PlayerAnimationController.ToWalk;
         PlayerMovementController.OnStop = PlayerAnimationController.Idle;
         PlayerMovementController.OnStop += PlayerBehaviourController.OnReachDestination;
-        PlayerInputController.OnInputToMove = PlayerMovementController.SetDestination;
-        PlayerInputController.OnInputToInteract = PlayerBehaviourController.InitInteract;
+        GroundMarker.Instance.OnMouseClick = PlayerMovementController.SetDestination;
 
     }
 }
