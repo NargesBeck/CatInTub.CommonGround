@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimationController))]
 [RequireComponent(typeof(PlayerMovementController))]
 [RequireComponent(typeof(PlayerBehaviourController))]
-[RequireComponent(typeof(PlayerInputController))]
 
 public class Player : MonoBehaviour
 {
@@ -48,17 +47,6 @@ public class Player : MonoBehaviour
             if (playerBehaviourController == null)
                 playerBehaviourController = GetComponent<PlayerBehaviourController>();
             return playerBehaviourController;
-        }
-    }
-
-    private PlayerInputController playerInputController;
-    private PlayerInputController PlayerInputController
-    {
-        get
-        {
-            if (playerInputController == null)
-                playerInputController = GetComponent<PlayerInputController>();
-            return playerInputController;
         }
     }
     #endregion
