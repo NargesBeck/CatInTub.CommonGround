@@ -13,13 +13,13 @@ public class PlayerCameraController : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * PlayerSettings.Instance.MouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * PlayerSettings.Instance.MouseSensitivity * Time.deltaTime;
+        //float mouseX = Input.GetAxis("Mouse X") * PlayerSettings.Instance.MouseSensitivity * Time.deltaTime;
+        //float mouseY = Input.GetAxis("Mouse Y") * PlayerSettings.Instance.MouseSensitivity * Time.deltaTime;
 
-        XRotation -= mouseY;
-        XRotation = Mathf.Clamp(XRotation, -90f, 90f); // Prevent over-rotation
+        //XRotation -= mouseY;
+        //XRotation = Mathf.Clamp(XRotation, -90f, 90f); // Prevent over-rotation
 
-        PlayerCamera.localRotation = Quaternion.Euler(XRotation, 0f, 0f);
-        PlayerParent.Rotate(Vector3.up * mouseX);
+        //PlayerCamera.localRotation = Quaternion.Euler(XRotation, 0f, 0f);
+        //PlayerParent.Rotate(Vector3.up * mouseX);
     }
 }

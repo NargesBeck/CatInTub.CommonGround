@@ -23,17 +23,18 @@ public class FlowerController : MonoBehaviour, IInteractable
         View.Init();
     }
 
-    public void Interact(string playerId)
+    public void Interact()
     {
-        Debug.Log("interacted with flower");
-        // play vfx
+        Debug.Log("someone is initiating contact - wait for them to call change state.");
+    }
 
+    public void ChangeState()
+    {
         switch (CurrentState)
         {
             case State.Pick: SetStateFromPickToWater(); break;
             case State.Water: SetStateFromWaterToPick(); break;
         }
-
     }
 
     private void SetStateFromPickToWater()

@@ -1,39 +1,36 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class PlayerMovementController : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private Camera mainCamera;
+    private NavMeshAgent Agent
+    {
+        get
+        {
+            if (agent == null)
+                agent = GetComponent<NavMeshAgent>();
+            return agent;
+        }
+    }
+
     public Action OnMove;
     public Action OnStop;
 
     private Coroutine movementCoroutine;
 
-    void Start()
+    public void Move(Vector3 point)
     {
-        agent = GetComponent<NavMeshAgent>();
-        mainCamera = Camera.main;
-    }
+        // called by input controller
+        // will notify necessary controllers via calling on move and on stop actions
+        Agent.SetDestination(point);
+        OnMove?.Invoke();
 
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                agent.SetDestination(hit.point);
-                OnMove?.Invoke();
-                
-                if (movementCoroutine != null)
-                    StopCoroutine(movementCoroutine);
-                movementCoroutine = StartCoroutine(WaitForDestination());
-            }
-        }
+        if (movementCoroutine != null)
+            StopCoroutine(movementCoroutine);
+        movementCoroutine = StartCoroutine(WaitForDestination());
     }
 
     private IEnumerator WaitForDestination()
